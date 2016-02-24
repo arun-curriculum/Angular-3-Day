@@ -143,3 +143,42 @@ app.config(function($stateProvider, $urlRouterProvider) {
 - In this first part we will set up a new Angular application using UI Router as our routing system.
 - Your job is to set this up and then use Angular to allow users to enter a search query and display the results on the list.html template.
 - Documentation for the Spotify API can be found [here](https://developer.spotify.com/web-api/).
+
+## Passing Parameters to States
+- Passing parameters to states will be important to make sure the required information gets transmitted through the URL.
+- The nice thing about using states is that any child states automatically have access to these parameters too.
+- To use this functionality we will need the $stateParams dependency:
+
+##### app.js
+
+```javascript
+$stateProvider
+        .state("home.hello", {
+            url: "/hello/:greeting",
+            views: {
+                "greeting": {
+                    templateUrl: "templates/hello.html",
+                    controller: function($scope, $stateParams) {
+                        $scope.greeting = $stateParams.greeting;
+                    }
+                }
+            }
+        });
+```
+
+##### hello.html
+
+```html
+<h3>Hey there!</h3>
+
+<h4>
+    {{greeting}}
+</h4>
+```
+
+## Spotify Search App Lab Part 2
+- In this part we will be creating the functionality for song.html.
+- Your job is to set up song.html as a child of the song list view we set up in part 1.
+- You will need to use the Spotify API to pull information about the song.
+- Set up the "Related Artists" section as a named view with its own controller.
+- "Related Artists" should pull the first 4 related artists for a specific artist based on their ID provided in the URL parameters.
