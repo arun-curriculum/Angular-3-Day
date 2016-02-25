@@ -142,6 +142,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 - The front end has already been completed for you [here](spotify_song_search/).
 - In this first part we will set up a new Angular application using UI Router as our routing system.
 - Your job is to set this up and then use Angular to allow users to enter a search query and display the results on the list.html template.
+- Use an abstract state to retain the navbar throughout the app. Your view will be a child of the abstract state.
 - Documentation for the Spotify API can be found [here](https://developer.spotify.com/web-api/).
 
 ## Passing Parameters to States
@@ -178,9 +179,8 @@ $stateProvider
 
 ## Spotify Search App Lab Part 2
 - In this part we will be creating the functionality for song.html.
-- Your job is to set up song.html as a child of the song list view we set up in part 1.
+- Your job is to set up song.html as a child of the abstract state, and activate the functionality using a URL parameter.
 - You will need to use the Spotify API to pull information about the song.
-- Set up the "Related Artists" section as a named view with its own controller.
 - "Related Artists" should pull the first 4 related artists for a specific artist based on their ID provided in the URL parameters.
 
 ## Introduction to Web Sockets
