@@ -182,3 +182,93 @@ $stateProvider
 - You will need to use the Spotify API to pull information about the song.
 - Set up the "Related Artists" section as a named view with its own controller.
 - "Related Artists" should pull the first 4 related artists for a specific artist based on their ID provided in the URL parameters.
+
+## Introduction to Web Sockets
+- One of the most powerful uses for Node is its ability to handle seamless "real-time" experiences.
+- Sockets are a way for a browser and server to communicate without the standard request-response cycle.
+- Chat clients, real-time data feeds, and operational dashboards are some examples of where sockets have been used effectively.
+
+## How it Basically Works
+- A client makes an initial request out to the server and a "handshake" is created - AKA a connection has been established.
+- This "handshake" is given a unique socket with a unique ID.
+- Essentially this request never completes and remains open for the duration of the session.
+- Every further request-response simulation is done via a manifestation of a JavaScript event.
+- In a perfect world this is how things would always operate with sockets but certain factors such as browser incompatibility and more can interfere with a proper handshake. As a result, a more brute-force approach of "polling" may be required.
+
+## Socket.io
+- Socket.io is a library that essentially manages browser capabilities to connect a client with a server through web sockets in the most ideal way possible.
+- It can switch between polling and sockets automatically and basically automate the handshake process.
+- Socket.io works on the client and the server side to achieve seamless interaction.
+
+## Socket-Based Chat Mechanism
+- We will be building a chat application in Node using web sockets.
+- We will use Express JS as the application framework.
+
+##### The Server Setup
+- For this project we will need to import the Express and Socket.io modules into the project:
+
+```javascript
+var express = require('express');
+var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+```
+
+- You will need to use this new variable `http` for our listen method:
+
+```javascript
+http.listen(3000);
+```
+
+- To handle the initial handshake, Socket.io registers a `connection` event:
+
+```javascript
+io.on('connection', function(socket) { });
+```
+
+- This is now a unique socket for this specific connection.
+- Any events to this socket can easily be detected and dealt with:
+
+```javascript
+socket.on('event', function(params) { });
+```
+
+- Any event can also be "emitted" from the socket if necessary:
+
+```javascript
+io.emit('event', params);
+```
+
+- You can also emit events to all sockets connected except for yours by using `broadcast`:
+
+```javascript
+socket.broadcast.emit('event', params);
+```
+
+##### The Client Setup
+- The client will also use Socket.io to handle the handshake and any further events.
+- For this part we will be using a [3rd party module](https://github.com/btford/angular-socket-io).
+- The first thing that will be needed is to create the handshake with the server:
+
+```javascript
+var socket = io.connect("server_url or blank for current server");
+```
+
+- The client can also detect and respond to events:
+
+```javascript
+socket.on('event', function(params) { });
+```
+
+- The client can also "emit" events:
+
+```javascript
+socket.emit('event', params);
+```
+
+## In-Class Lab: Build the Chat
+- In this lab we will be working to create a real-time chat application.
+- The front end is already done for you [here](socket_chat/).
+- You will be working to create the chat functionality using web sockets.
+- A working public server can be found at: http://arunchatserver.herokuapp.com/
+- **Bonus:** Use your knowledge to change the page title when a new chat is received.
