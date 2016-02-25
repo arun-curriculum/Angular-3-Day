@@ -20,3 +20,5 @@
 - UI Router
 - Working with named views
 - Child states
+- Introduction to web sockets
+- Integrating sockets with Angular
