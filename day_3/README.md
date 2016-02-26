@@ -142,7 +142,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 - The front end has already been completed for you [here](spotify_song_search/).
 - In this first part we will set up a new Angular application using UI Router as our routing system.
 - Your job is to set this up and then use Angular to allow users to enter a search query and display the results on the list.html template.
-- Use an abstract state to retain the navbar throughout the app. Your view will be a child of the abstract state.
+- Use named views in your setup.
 - Documentation for the Spotify API can be found [here](https://developer.spotify.com/web-api/).
 
 ## Passing Parameters to States
