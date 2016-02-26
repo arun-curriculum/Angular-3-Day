@@ -179,8 +179,8 @@ $stateProvider
 
 ## Spotify Search App Lab Part 2
 - In this part we will be creating the functionality for song.html.
-- Your job is to set up song.html as a child of the abstract state, and activate the functionality using a URL parameter.
 - You will need to use the Spotify API to pull information about the song.
+- Set up the "Related Artists" section as a named view with its own controller.
 - "Related Artists" should pull the first 4 related artists for a specific artist based on their ID provided in the URL parameters.
 
 ## Introduction to Web Sockets
